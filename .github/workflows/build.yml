@@ -25,12 +25,21 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build with Gradle
-        run: ./gradlew assemble --no-daemon
+        run: ./gradlew :composeApp:assemble --no-daemon
 
-      - name: Upload APK
+      - name: Test with Gradle
+        run: ./gradlew :composeApp:desktopTest --no-daemon
+
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: Generated APK
+          name: debug-apk
           path:  |
-            androidApp/build/outputs/apk/**/*.apk
-            composeApp/build/outputs/apk/**/*.apk
+            composeApp/build/outputs/apk/debug/composeApp-debug.apk
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path:  |
+            composeApp/build/outputs/apk/release/composeApp-release.apk

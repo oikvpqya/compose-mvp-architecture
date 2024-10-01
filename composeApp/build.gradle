@@ -12,25 +12,7 @@ kotlin {
     androidTarget()
     jvm("desktop")
 
-    wasmJs {
-        moduleName = "composeApp"
-        browser {
-            commonWebpackConfig {
-                outputFileName = "composeApp.js"
-            }
-        }
-        binaries.executable()
-    }
-
     sourceSets {
-        androidMain {
-            dependencies {
-                implementation libs.androidx.core.ktx
-                implementation libs.androidx.activity.compose
-                implementation libs.kotlinx.coroutines.android
-            }
-        }
-
         commonMain {
             dependencies {
                 implementation compose.foundation
@@ -40,15 +22,18 @@ kotlin {
             }
         }
 
+        androidMain {
+            dependencies {
+                implementation libs.androidx.core.ktx
+                implementation libs.androidx.activity.compose
+                implementation libs.kotlinx.coroutines.android
+            }
+        }
+
         desktopMain {
             dependencies {
                 implementation compose.desktop.currentOs
                 implementation libs.kotlinx.coroutines.swing
-            }
-        }
-
-        wasmJsMain {
-            dependencies {
             }
         }
     }
@@ -90,10 +75,6 @@ compose {
                 packageVersion = "1.0.0"
             }
         }
-    }
-
-    experimental {
-        web.application {}
     }
 }
 

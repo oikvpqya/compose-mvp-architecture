@@ -2,21 +2,43 @@
 androidGradlePlugin = "8.5.2"
 androidxActivity = "1.9.2"
 androidxCore = "1.13.1"
-jetbrainsCompose = "1.6.11"
+cashMolecule = "2.0.0"
+cashTurbine = "1.1.0"
+googleKsp = "2.0.20-1.0.25"
+jetbrainsCompose = "1.7.0-beta02"
+jetbrainsLifecycle = "2.8.2"
+jetbrainsNavigation = "2.8.0-alpha10"
 kotlin = "2.0.20"
 kotlinxCoroutines = "1.9.0"
+kotlinxSerialization = "1.7.3"
+ktor = "3.0.0-rc-1"
+takahiromRin = "0.3.0"
+tatarkaInject = "0.7.2"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+cash-molecule = { module = "app.cash.molecule:molecule-runtime", version.ref = "cashMolecule" }
+cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "cashTurbine" }
+jetbrains-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "jetbrainsLifecycle" }
+jetbrains-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrainsLifecycle" }
+jetbrains-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "jetbrainsNavigation" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
-kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+takahirom-rin = { module = "io.github.takahirom.rin:rin", version.ref = "takahiromRin" }
+tatarka-inject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "tatarkaInject" }
+tatarka-inject-runtime = { module = "me.tatarka.inject:kotlin-inject-runtime", version.ref = "tatarkaInject" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "googleKsp" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrainsCompose" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

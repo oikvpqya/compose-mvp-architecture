@@ -3,8 +3,10 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     alias libs.plugins.android.application
     alias libs.plugins.compose.compiler
+    alias libs.plugins.google.ksp
     alias libs.plugins.jetbrains.compose
     alias libs.plugins.kotlin.multiplatform
+    alias libs.plugins.kotlin.serialization
 }
 
 kotlin {
@@ -12,43 +14,43 @@ kotlin {
     androidTarget()
     jvm("desktop")
 
-    wasmJs {
-        moduleName = "composeApp"
-        browser {
-            commonWebpackConfig {
-                outputFileName = "composeApp.js"
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation compose.material
+                implementation compose.ui
+                implementation libs.jetbrains.navigation.compose
+                implementation libs.kotlinx.coroutines.core
+                implementation libs.kotlinx.serialization.json
+                implementation libs.ktor.client.core
+                implementation libs.takahirom.rin
+                implementation libs.tatarka.inject.runtime
             }
         }
-        binaries.executable()
-    }
 
-    sourceSets {
         androidMain {
             dependencies {
                 implementation libs.androidx.core.ktx
                 implementation libs.androidx.activity.compose
-                implementation libs.kotlinx.coroutines.android
-            }
-        }
-
-        commonMain {
-            dependencies {
-                implementation compose.foundation
-                implementation compose.material3
-                implementation compose.ui
-                implementation libs.kotlinx.coroutines.core
+                implementation libs.ktor.client.okhttp
             }
         }
 
         desktopMain {
             dependencies {
                 implementation compose.desktop.currentOs
-                implementation libs.kotlinx.coroutines.swing
+                implementation libs.ktor.client.okhttp
             }
         }
 
-        wasmJsMain {
+        commonTest {
             dependencies {
+                implementation libs.cash.molecule
+                implementation libs.cash.turbine
+                implementation libs.jetbrains.lifecycle.runtime.compose
+                implementation libs.jetbrains.lifecycle.viewmodel.compose
+                implementation libs.kotlin.test
+                implementation libs.kotlinx.coroutines.test
             }
         }
     }
@@ -91,13 +93,11 @@ compose {
             }
         }
     }
-
-    experimental {
-        web.application {}
-    }
 }
 
 dependencies {
     debugImplementation compose.uiTooling
     "androidMainImplementation" compose.preview
+    kspAndroid libs.tatarka.inject.compiler
+    kspDesktop libs.tatarka.inject.compiler
 }

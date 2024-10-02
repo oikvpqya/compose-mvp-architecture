@@ -17,7 +17,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "playground"
-include ":androidApp"
+rootProject.name = "compose-mvp-architecture"
 include ":composeApp"
-include ":library"
